@@ -1,0 +1,327 @@
+\documentclass{scrartcl}
+\usepackage[margin=3cm]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{datetime}
+\usepackage{fontspec}
+\usepackage{graphicx}
+\usepackage{kotex}
+\usepackage{mathrsfs}
+\usepackage{mathtools}
+\usepackage{pgf,tikz,pgfplots}
+
+\pgfplotsset{compat=1.15}
+\usetikzlibrary{arrows}
+
+\newcommand\Overline[2][0.8pt]{%
+  \begin{tikzpicture}[baseline=(a.base)]
+    \node[inner xsep=0pt,inner ysep=1.5pt] (a) {$#2$};
+    \draw[line width= #1] (a.north west) -- (a.north east);
+  \end{tikzpicture}
+}
+\newtheorem{theorem}{Theorem}
+
+\setmainhangulfont{Noto Serif CJK KR}[
+UprightFont=* Light, BoldFont=* Bold,
+Script=Hangul, Language=Korean, AutoFakeSlant,
+]
+\setsanshangulfont{Noto Sans CJK KR}[
+UprightFont=* DemiLight, BoldFont=* Medium,
+Script=Hangul, Language=Korean
+]
+\setmathhangulfont{Noto Sans CJK KR}[
+SizeFeatures={
+  {Size=-6,  Font=* Medium},
+  {Size=6-9, Font=*},
+  {Size=9-,  Font=* DemiLight},
+},
+Script=Hangul, Language=Korean
+]
+\title{MATH230: Homework 1 (due Sep. 11)}
+\author{손량(20220323)}
+\date{Last compiled on: \today, \currenttime}
+
+\newcommand{\un}[1]{\ensuremath{\ \mathrm{#1}}}
+\newcommand{\imag}{\operatorname{Im}}
+\newcommand{\real}{\operatorname{Re}}
+\newcommand{\Log}{\operatorname{Log}}
+\newcommand{\Arg}{\operatorname{Arg}}
+\DeclareMathOperator*{\Res}{Res}
+
+\begin{document}
+\maketitle
+
+\section{Chapter 2 \#12}
+
+\subsection{Solution for (a)}
+The subjects' type can be encoded using a string of length 3, \(A_1 A_2 A_3\)
+where \(A_1 \in \{Z, W, S\}, A_2 \in \{Y, N\}, A_3 \in \{M, F\}\). Then the
+sample space can be written as follows:
+\begin{align*}
+  S = \{ZYM, ZYF, ZNM, ZNF, WYM, WYF, WNM, WNF, SYM, SYF, SNM, SNF\}
+\end{align*}
+
+\subsection{Solution for (b)}
+\(A\) can we written as:
+\begin{align*}
+  A = \{ZYF, ZNF, WYF, WNF, SYF, SNF\}
+\end{align*}
+\(B\) can be written as:
+\begin{align*}
+  B = \{WYM, WYF, WNM, WNF\}
+\end{align*}
+So we can write
+\begin{align*}
+  A \cup B = \{ZYF, ZNF, WYM, WYF, WNM, WNF, SYF, SNF\}
+\end{align*}
+
+\subsection{Solution for (c)}
+Using \(A\) and \(B\) listed above, we can write
+\begin{align*}
+  A \cap B = \{WYF, WNF\}
+\end{align*}
+
+\section{Chapter 2 \#32}
+\subsection{Solution for (a)}
+The number of ways is equal to the number of permutations of 6 objects, which
+is \(6! = 720\).
+
+\subsection{Solution for (b)}
+First, there are \(3! = 6\) ways to line up the three stubborn people. Then,
+treating those people as one person, there are \(4! = 24\) ways to line up 3
+other people and the three-person-group. Using the rule~2.2 in the textbook,
+we know that there are \(3! \times 4! = 144\) ways to line up.
+
+\subsection{Solution for (c)}
+First, there are \(4! = 24\) ways to line up 4 people, except the two people
+who refuse to follow each other. Then, there are \(5 \choose 2\) positions
+between, front, or rear of the already lined-up people. Also, There are \(2!\)
+ways to determine one of the two people who comes first in line. Using the
+rule~2.2 in the textbook, we know that there are
+\(4! \times {5 \choose 2} \times 2! = 480\) ways to line up.
+
+\section{Chapter 2 \#38}
+\subsection{Solution for (a)}
+The number of ways is equal to the number of permutations of 6 objects, which
+is \(6! = 720\).
+
+\subsection{Solution for (b)}
+There are \(3! = 6\) ways to line up three couples, and each couple has \(2!\)
+ways to line up: male goes first in line or female goes first in line. By the
+rule~2.2 in the textbook, the number of ways is \(3! \times (2!)^3 = 48\).
+
+\subsection{Solution for (c)}
+There are \(3!\) ways to line up 3 women, and \(3!\) ways to line up 3 men. By
+the rule~2.2 in the textbook, the number of ways is \(3! \times 3! = 36\).
+
+\section{Chapter 2 \#43}
+By the theorem~2.3, the number of ways is \((6 - 1)! = 120\).
+
+\section{Chapter 2 \#58}
+\subsection{Solution for (a)}
+Let's denote the result of the dice throw as \((a, b)\), where \(a\) and \(b\)
+are the numbers from each dice. (We will distinguish two dices)
+Then, the sample space can be written as follows:
+\begin{align*}
+  S = \{(1, 1), (1, 2), \dots, (1, 6), (2, 1), (2, 2), \dots, (2, 6), \dots,
+  (6, 1), (6, 2), \dots, (6, 6)\}
+\end{align*}
+If \(A\) represents the event of the total being 9, we can write
+\begin{align*}
+  A = \{(3, 6), (4, 5), (5, 4), (6, 3)\}
+\end{align*}
+Since the dice is fair, each of the outcomes in \(S\) is equally likely to
+occur. We assign a probability of \(\omega\) to each sample point of \(S\).
+Then \(36\omega = 1\) so \(\omega = 1 / 36\). Thus,
+\begin{align*}
+  P(A) = 4 \times \frac{1}{36} = \frac{1}{9}
+\end{align*}
+
+\subsection{Solution for (b)}
+If \(B\) represents the event of the total being at most 3, we can write
+\begin{align*}
+  B = \{(1, 1), (1, 2), (2, 1)\}
+\end{align*}
+Using the similar argument we made in (a),
+\begin{align*}
+  P(B) = 3 \times \frac{1}{36} = \frac{1}{12}
+\end{align*}
+
+\section{Chapter 2 \#72}
+Using de Morgan's~law, we can write
+\[ P(A' \cap B') = P((A \cup B)') \]
+Using theorem~2.9 in the textbook,
+\[ P((A \cup B)') = 1 - P(A \cup B) \]
+By theorem~2.7 in the textbook,
+\[ 1 - P(A \cup B) = 1 - (P (A) + P(B) - P(A \cap B)) \]
+Then we get the desired result:
+\[ P(A' \cap B') = 1 + P(A \cap B) - P (A) - P(B) \]
+
+\section{Chapter 2 \#76}
+Consider the events:
+\begin{itemize}
+  \item \(S_0\): The person is a nonsmoker
+  \item \(S_1\): The person is a moderate smoker.
+  \item \(S_2\): The person is a heavy smoker.
+  \item \(H\): The person is experiencing hypertension.
+  \item \(NH\): The person is not experiencing hypertension.
+\end{itemize}
+
+\subsection{Solution for (a)}
+The probability we are interested in is \(P(H | S_2)\). Using the
+definition~2.10,
+\begin{align*}
+  P(H | S_2)
+  = \frac{P(H \cap S_2)}{P(S_2)}
+  = \frac{30}{180} \times \left( \frac{49}{180} \right)^{-1}
+  = \frac{30}{49}
+\end{align*}
+
+\subsection{Solution for (b)}
+The probability we are interested in is \(P(S_0 | NH)\). Using the
+definition~2.10,
+\begin{align*}
+  P(S_0 | NH)
+  = \frac{P(S_0 \cap NH)}{P(NH)}
+  = \frac{48}{180} \times \left( \frac{48 + 26 + 19}{180} \right)^{-1}
+  = \frac{48}{93}
+\end{align*}
+
+\section{Chapter 2 \#78}
+Consider the events:
+\begin{itemize}
+  \item \(R_1\): The batch is rejected by the first inspection.
+  \item \(R_2\): The batch is rejected by the second inspection.
+  \item \(R_3\): The batch is rejected by the third inspection.
+\end{itemize}
+
+Before we begin, let's prove this statement:
+\begin{theorem}
+  Let \(A, B\) be independent events of a sample space \(S\), where
+  \(0 < P(A) < 1\) and \(0 < P(B) < 1\). Then \(A'\) and \(B\) are independent.
+\end{theorem}
+\begin{proof}
+  \(A\) and \(B\) are independent, so by the theorem~2.11, we can write
+  \begin{align*}
+    P(B)
+    &= P(S \cap B)
+    = P((A \cup A') \cap B)
+    = P((A \cap B) \cup (A' \cap B)) \\
+    &= P(A \cap B) + P(A' \cap B) - P((A \cap B) \cap (A' \cap B)) \\
+    &= P(A \cap B) + P(A' \cap B) - P(\varnothing)
+    = P(A)P(B) + P(A')P(B)
+  \end{align*}
+  Then,
+  \begin{align*}
+    P(A')P(B) = P(B) - P(A)P(B) = (1 - P(A))P(B) = P(A')P(B)
+  \end{align*}
+  Again, by the theorem~2.11, \(A'\) and \(B\) are independent.
+\end{proof}
+
+\subsection{Solution for (a)}
+The probability we are interested in is \(P(R_1' \cap R_2)\). As we proved
+earlier, \(R_1'\) and \(R_2\) are independent as \(R_1\) and \(R_2\) are
+independent. Then we can write
+\begin{align*}
+  P(R_1' \cap R_2) = P(R_1')P(R_2) = (1 - 0.10) \times 0.05 = 0.045
+\end{align*}
+
+\subsection{Solution for (b)}
+The probability we are interested in is \(P(R_1' \cap R_2' \cap R_3)\). As we
+proved earlier, \(R_1'\) and \(R_2'\) are independent as \(R_1\) and \(R_2\)
+are independent, so \(P(R_2' | R_1') = P(R_2')\). In a similar fashion,
+\(R_2'\) and \(R_3\), \(R_1'\) and \(R_3\) are independent. By theorem~2.12, we
+can write
+\begin{align*}
+  P(R_1' \cap R_2' \cap R_3) = P(R_1')P(R_2')P(R_3) = (1 - 0.10) \times (1 - 0.05) \times 0.15 = 0.12825
+\end{align*}
+
+\section{Chapter 2 \#87}
+Consider the events:
+\begin{itemize}
+  \item \(U\): The home is one of the homes that are left unlocked.
+  \item \(K\): The home can be opened by one of the three master keys.
+\end{itemize}
+
+The probability we are interested in is \(P(U \cup K)\), and \(U\) and \(K\)
+can be considered independent as the key was randomly selected. We can write
+\begin{align*}
+  P(U \cup K)
+  = P(U) + P(K) - P(U)P(K)
+  = 0.3 + \frac{{7 \choose 2}}{{8 \choose 2}} - 0.3 \times \frac{{7 \choose 2}}{{8 \choose 2}}
+  = \frac{9}{16}
+\end{align*}
+
+\section{Chapter 2 \#93}
+Let \(A, B, C, D, E\) be events where the component \(A, B, C, D, E\) works,
+respectively. Then we can write
+\begin{align*}
+  P(A) = P(B) = 0.7, P(C) = P(D) = P(E) = 0.8
+\end{align*}
+
+\subsection{Solution for (a)}
+The system works if \(A, B\) works, or \(C, D, E\) works. Thus, the probability
+we are interested in is \(P((A \cap B) \cup (C \cap D \cap E))\). Since the
+components fail independently,
+\begin{align*}
+  P((A \cap B) \cup (C \cap D \cap E))
+  &= P(A \cap B) + P(C \cap D \cap E) - P(A \cap B \cap C \cap D \cap E) \\
+  &= P(A)P(B) + P(C)P(D)P(E) - P(A)P(B)P(C)P(C)P(E) \\
+  &= 0.75112
+\end{align*}
+
+\subsection{Solution for (b)}
+The probability we are interested in is \(P(A' | \text{the system works})\).
+We can write
+\begin{align*}
+  P(A' | \text{the system works})
+  &= \frac{P(A' \cap \text{the system works})}{P(\text{the system works})} \\
+  &= \frac{P(A' \cap [(A \cap B) \cup (C \cap D \cap E)])}{P((A \cap B) \cup (C \cap D \cap E))} \\
+  &= \frac{P(A' \cap C \cap D \cap E)}{P((A \cap B) \cup (C \cap D \cap E))}
+  = \frac{1920}{9389}
+\end{align*}
+
+\section{Chapter 2 \#96}
+Let \(A_i \quad (i = 1, 2, 3, 4)\) be events where the driver is passing
+\(L_i\), respectively. Then,
+\begin{align*}
+  P(A_1) = 0.2, P(A_2) = 0.1, P(A_3) = 0.5, P(A_4) = 0.2
+\end{align*}
+Let \(B\) the event where radar traps resulting in speeding ticket. Then, the
+probability we are interested in is \(P(B)\). We can write
+\begin{align*}
+  P(B | A_1) = 0.4, P(B | A_2) = 0.3, P(B | A_3) = 0.2, P(B | A_4) = 0.3
+\end{align*}
+Using the theorem~2.13, we can write
+\begin{align*}
+  P(B) = \sum^4_{k = 1} P(B | A_k) P(A_k) = 0.27
+\end{align*}
+
+\section{Chapter 2 \#98}
+The probability we are interested in is \(P(A_2 | B)\). Using the Bayes'~rule,
+\begin{align*}
+  P(A_2 | B)
+  = \frac{P(A_2 \cap B)}{\sum^4_{k = 1} P(A_k \cap B)}
+  = \frac{P(B | A_2) P(A_2)}{\sum^4_{k = 1} P(A_k) P(B | A_k)}
+  = \frac{1}{9}
+\end{align*}
+
+\section{Chapter 2 \#102}
+Let \(H\) be the event where you picked \(A\) and the host opened \(B\)
+revealing no prize. Since the door is chosen randomly,
+\(P(A) = P(B) = P(C) = 1/3\). Assuming that the host does not open the chosen
+door or the door which has the prize, we know that
+\begin{align*}
+  P(H | A) = \frac{1}{2}, P(H | B) = 0, P(H | C) = 1
+\end{align*}
+Using the Bayes'~rule,
+\begin{align*}
+  P(A | H)
+  &= \frac{P(A \cap H)}{P(A \cap H) + P(B \cap H) + P(C \cap H)} \\
+  &= \frac{P(H | A) P(A)}{P(H | A) P(A) + P(H | B) P(B) + P(H | C) P(C)}
+  = \frac{1}{3}
+\end{align*}
+Thus, switching door is better.
+
+\end{document}
