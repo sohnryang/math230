@@ -107,22 +107,22 @@ The number of ways is equal to the number of permutations of 6 objects, which
 is \(6! = 720\).
 
 \subsection{Solution for (b)}
-There are \(3! = 6\) ways to line up three couples, and each couple has \(2!\)
-ways to line up: male goes first in line or female goes first in line. By the
-rule~2.2 in the textbook, the number of ways is \(3! \times (2!)^3 = 48\).
+There are \(3! = 6\) ways to seat three couples, and each couple has \(2!\)
+ways to sit: male sits left or female sits left in row. By the rule~2.2 in the
+textbook, the number of ways is \(3! \times (2!)^3 = 48\).
 
 \subsection{Solution for (c)}
-There are \(3!\) ways to line up 3 women, and \(3!\) ways to line up 3 men. By
-the rule~2.2 in the textbook, the number of ways is \(3! \times 3! = 36\).
+There are \(3!\) ways to seat 3 women, and \(3!\) ways to seat 3 men. By the
+rule~2.2 in the textbook, the number of ways is \(3! \times 3! = 36\).
 
 \section{Chapter 2 \#43}
 By the theorem~2.3, the number of ways is \((6 - 1)! = 120\).
 
 \section{Chapter 2 \#58}
 \subsection{Solution for (a)}
-Let's denote the result of the dice throw as \((a, b)\), where \(a\) and \(b\)
-are the numbers from each dice. (We will distinguish two dices)
-Then, the sample space can be written as follows:
+Considering two dice distinct, let's denote outcome of the dice throw as
+\((a, b)\), where \(a\) and \(b\) are the numbers from each dice. Then, the
+sample space can be written as follows:
 \begin{align*}
   S = \{(1, 1), (1, 2), \dots, (1, 6), (2, 1), (2, 2), \dots, (2, 6), \dots,
   (6, 1), (6, 2), \dots, (6, 6)\}
@@ -161,7 +161,7 @@ Then we get the desired result:
 \section{Chapter 2 \#76}
 Consider the events:
 \begin{itemize}
-  \item \(S_0\): The person is a nonsmoker
+  \item \(S_0\): The person is a nonsmoker.
   \item \(S_1\): The person is a moderate smoker.
   \item \(S_2\): The person is a heavy smoker.
   \item \(H\): The person is experiencing hypertension.
@@ -234,7 +234,10 @@ are independent, so \(P(R_2' | R_1') = P(R_2')\). In a similar fashion,
 \(R_2'\) and \(R_3\), \(R_1'\) and \(R_3\) are independent. By theorem~2.12, we
 can write
 \begin{align*}
-  P(R_1' \cap R_2' \cap R_3) = P(R_1')P(R_2')P(R_3) = (1 - 0.10) \times (1 - 0.05) \times 0.15 = 0.12825
+  P(R_1' \cap R_2' \cap R_3)
+  = P(R_1')P(R_2')P(R_3)
+  = (1 - 0.10) \times (1 - 0.05) \times 0.15
+  = 0.12825
 \end{align*}
 
 \section{Chapter 2 \#87}
@@ -249,7 +252,8 @@ can be considered independent as the key was randomly selected. We can write
 \begin{align*}
   P(U \cup K)
   = P(U) + P(K) - P(U)P(K)
-  = 0.3 + \frac{{7 \choose 2}}{{8 \choose 2}} - 0.3 \times \frac{{7 \choose 2}}{{8 \choose 2}}
+  = 0.3 + \frac{{7 \choose 2}}{{8 \choose 3}}
+  - 0.3 \times \frac{{7 \choose 2}}{{8 \choose 3}}
   = \frac{9}{16}
 \end{align*}
 
@@ -272,12 +276,12 @@ components fail independently,
 \end{align*}
 
 \subsection{Solution for (b)}
-The probability we are interested in is \(P(A' | \text{the system works})\).
-We can write
+Let \(S\) be an event where the system works. The probability we are interested
+in is \(P(A' | S)\). We can write
 \begin{align*}
-  P(A' | \text{the system works})
-  &= \frac{P(A' \cap \text{the system works})}{P(\text{the system works})} \\
-  &= \frac{P(A' \cap [(A \cap B) \cup (C \cap D \cap E)])}{P((A \cap B) \cup (C \cap D \cap E))} \\
+  P(A' | S)
+  &= \frac{P(A' \cap S)}{P(S)}
+  = \frac{P(A' \cap [(A \cap B) \cup (C \cap D \cap E)])}{P((A \cap B) \cup (C \cap D \cap E))} \\
   &= \frac{P(A' \cap C \cap D \cap E)}{P((A \cap B) \cup (C \cap D \cap E))}
   = \frac{1920}{9389}
 \end{align*}
@@ -315,12 +319,20 @@ door or the door which has the prize, we know that
 \begin{align*}
   P(H | A) = \frac{1}{2}, P(H | B) = 0, P(H | C) = 1
 \end{align*}
-Using the Bayes'~rule,
+Using the Bayes'~rule, the probability of getting the prize if you don't switch
+is
 \begin{align*}
   P(A | H)
   &= \frac{P(A \cap H)}{P(A \cap H) + P(B \cap H) + P(C \cap H)} \\
   &= \frac{P(H | A) P(A)}{P(H | A) P(A) + P(H | B) P(B) + P(H | C) P(C)}
   = \frac{1}{3}
+\end{align*}
+However, if you switch,
+\begin{align*}
+  P(C | H)
+  &= \frac{P(C \cap H)}{P(A \cap H) + P(B \cap H) + P(C \cap H)} \\
+  &= \frac{P(H | C) P(C)}{P(H | A) P(A) + P(H | B) P(B) + P(H | C) P(C)}
+  = \frac{2}{3}
 \end{align*}
 Thus, switching door is better.
 
