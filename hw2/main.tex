@@ -142,10 +142,15 @@ Using the defintion of probability density function,
 \end{align*}
 
 \subsection{Solution for (c)}
-The magnitude of error is less than 0.8 if and only if \(-0.8 < x < 0.8\). Using
-the defintion of probability density function,
+The magnitude of error is greater than 0.8 if and only if \(x > 0.8\) or \(x <
+-0.8\). Using the defintion of probability density function,
 \begin{align*}
-  P(-0.8 < x < 0.8) = \int^{0.8}_{-0.8} f(x) dx = \frac{209}{250}
+  P(|X| > 0.8)
+  &= P(X < -0.8) + P(X > 0.8)
+  = P(-1 \leq X < -0.8) + P(0.8 < X \leq 1) \\
+  &= P(-1 < X < -0.8) + P(0.8 < X < 1)
+  = \int^{-0.8}_{-1} f(x) dx + \int^{1}_{0.8} f(x) dx \\
+  &= \frac{41}{500} + \frac{41}{500} = \frac{41}{250}
 \end{align*}
 
 \section{Chapter 3 \#39}
@@ -187,6 +192,7 @@ density,
   = \left[ \frac{2xy}{3} + \frac{2y^2}{3} \right]^1_{y = 0}
   = \frac{2x + 2}{3}
 \end{align*}
+where \(x \in [0, 1]\).
 
 \subsection{Solution for (b)}
 Let \(h(y)\) be the marginal density of \(Y\). By the defintion of marginal
@@ -199,6 +205,7 @@ density,
   = \left[ \frac{x^2}{3} + \frac{4xy}{3} \right]^1_{x = 0}
   = \frac{4y + 1}{3}
 \end{align*}
+where \(y \in [0, 1]\).
 
 \subsection{Solution for (c)}
 Using the defintion of marginal density, we can write
@@ -223,6 +230,7 @@ defintion of marginal density,
   = \int^y_0 2 dx
   = 2y
 \end{align*}
+where \(x \in (0, 1)\), \(y \in (0, 1)\).
 By plugging \(x = y = 1/2\), we obtain
 \begin{align*}
   f(1/2, 1/2) = 2 \not = g(1/2) h(1/2) = 1
@@ -232,11 +240,14 @@ Thus, \(X\) and \(Y\) are dependent.
 \subsection{Solution for (b)}
 We can write
 \begin{align*}
+  f(x | y) = \frac{f(x, y)}{h(y)} = \frac{1}{y}
+\end{align*}
+Then,
+\begin{align*}
   P(1/4 < X < 1/2 | Y = 3/4)
-  = \int^\frac{1}{2}_\frac{1}{4} f(x | 3/4) dx
-  = \int^\frac{1}{2}_\frac{1}{4} \frac{f(x, 3/4)}{h(3/4)} dx
-  = \int^\frac{1}{2}_\frac{1}{4} \frac{2}{4/3} dx
-  = \frac{3}{8}
+  = \int^\frac{1}{2}_\frac{1}{4} f(x | y = 3/4) dx
+  = \int^\frac{1}{2}_\frac{1}{4} \frac{4}{3} dx
+  = \frac{1}{3}
 \end{align*}
 
 \end{document}
