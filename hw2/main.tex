@@ -1,0 +1,243 @@
+\documentclass{scrartcl}
+\usepackage[margin=3cm]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{blindtext}
+\usepackage{datetime}
+\usepackage{fontspec}
+\usepackage{graphicx}
+\usepackage{kotex}
+\usepackage{mathrsfs}
+\usepackage{mathtools}
+\usepackage{pgf,tikz,pgfplots}
+\usepackage{float}
+
+\pgfplotsset{compat=1.15}
+\usetikzlibrary{arrows}
+
+\newcommand\Overline[2][0.8pt]{%
+  \begin{tikzpicture}[baseline=(a.base)]
+    \node[inner xsep=0pt,inner ysep=1.5pt] (a) {$#2$};
+    \draw[line width= #1] (a.north west) -- (a.north east);
+  \end{tikzpicture}
+}
+\newtheorem{theorem}{Theorem}
+
+\setmainhangulfont{Noto Serif CJK KR}[
+  UprightFont=* Light, BoldFont=* Bold,
+  Script=Hangul, Language=Korean, AutoFakeSlant,
+]
+\setsanshangulfont{Noto Sans CJK KR}[
+  UprightFont=* DemiLight, BoldFont=* Medium,
+  Script=Hangul, Language=Korean
+]
+\setmathhangulfont{Noto Sans CJK KR}[
+  SizeFeatures={
+    {Size=-6,  Font=* Medium},
+    {Size=6-9, Font=*},
+    {Size=9-,  Font=* DemiLight},
+  },
+  Script=Hangul, Language=Korean
+]
+\title{MATH230: Homework 2 (due Sep. 18)}
+\author{손량(20220323)}
+\date{Last compiled on: \today, \currenttime}
+
+\newcommand{\un}[1]{\ensuremath{\ \mathrm{#1}}}
+\newcommand{\imag}{\operatorname{Im}}
+\newcommand{\real}{\operatorname{Re}}
+\newcommand{\Log}{\operatorname{Log}}
+\newcommand{\Arg}{\operatorname{Arg}}
+\DeclareMathOperator*{\Res}{Res}
+
+\begin{document}
+\maketitle
+
+\section{Chapter 3 \#3}
+We can denote an outcome of a coin toss by length 3 string, \(X_1 X_2 X_3\),
+where \(X_1 \in \{H, T\}, X_2 \in \{H, T\}, X_3 \in \{H, T\}\). Then the sample
+space \(S\) can be written as follows:
+\begin{align*}
+  S = \{HHH, HHT, HTH, HTT, THH, THT, TTH, TTT\}
+\end{align*}
+
+The values \(w\) of the random variable \(W\) can be assigned as follows:
+\begin{figure}[H]
+  \centering
+  \begin{tabular}{|c|c|}
+  \hline
+  Sample Space & $w$ \\
+  \hline
+  \(HHH\)        & 3   \\
+  \(HHT\)        & 1   \\
+  \(HTH\)        & 1   \\
+  \(HTT\)        & -1  \\
+  \(THH\)        & 1   \\
+  \(THT\)        & -1  \\
+  \(TTH\)        & -1  \\
+  \(TTT\)        & -3  \\
+  \hline
+  \end{tabular}
+\end{figure}
+
+\section{Chapter 3 \#8}
+By the defintion of probability distribution, as \(w\) can have one of \(\{-3,
+-1, 1, 3\}\), we can write
+\begin{align*}
+  f(-3) = \left( \frac{1}{3} \right)^3 = \frac{1}{27}, &\quad
+  f(-1) = 3 \left( \frac{2}{3} \right) \left( \frac{1}{3} \right)^2
+  = \frac{2}{9} \\
+  f(1) = 3 \left( \frac{2}{3} \right)^2 \left( \frac{1}{3} \right)
+  = \frac{4}{9}, &\quad
+  f(3) = \left( \frac{2}{3} \right)^3 = \frac{8}{27}
+\end{align*}
+Thus, the probability distribution can be written as
+\begin{figure}[H]
+  \centering
+  \begin{tabular}{|l|llll|}
+  \hline
+  \(w\)    & -3               & -1              & 1               & 3                \\
+  \hline
+  \(f(w)\) & \(\frac{1}{27}\) & \(\frac{2}{9}\) & \(\frac{4}{9}\) &
+  \(\frac{8}{27}\) \\
+  \hline
+  \end{tabular}
+\end{figure}
+
+\section{Chapter 3 \#9}
+\subsection{Solution for (a)}
+Using the defintion of probability density function,
+\begin{align*}
+  P(0 < X < 1) = \int^1_0 f(x) dx = \int^1_0 \frac{2(x + 2)}{5} dx
+  = \left[ \frac{x^2}{5} + \frac{4x}{5} \right]^1_0 = 1
+\end{align*}
+Thus, \(P(0 < X < 1) = 1\).
+
+\subsection{Solution for (b)}
+Again using the defintion of probability density function,
+\begin{align*}
+  P(1/4 < X < 3/4) = \int^{\frac{3}{4}}_{\frac{1}{4}} f(x) dx
+  = \int^{\frac{3}{4}}_{\frac{1}{4}} \frac{2(x + 2)}{5} dx
+  = \left[ \frac{x^2}{5} + \frac{4x}{5} \right]^{\frac{3}{4}}_{\frac{1}{4}}
+  = \frac{1}{2}
+\end{align*}
+
+\section{Chapter 3 \#30}
+\subsection{Solution for (a)}
+By the defintion of probability density function,
+\begin{align*}
+  \int^\infty_{-\infty} f(x) dx = \int^1_{-1} k(3 - x^2) dx
+  = \left[ 3kx - \frac{kx^3}{3} \right]^1_{-1}
+  = 6k - \frac{2k}{3} = \frac{16k}{3} = 1
+\end{align*}
+Thus, \(k\) should be \(3/16\) if \(f\) is a valid probability density function.
+
+\subsection{Solution for (b)}
+Using the defintion of probability density function,
+\begin{align*}
+  P(x < 1/2) = \int^{\frac{1}{2}}_{-\infty} f(x) dx
+  = \int^{\frac{1}{2}}_{-1} f(x) dx
+  = \left[ 3kx - \frac{kx^3}{3} \right]^{\frac{1}{2}}_{-1} = \frac{99}{128}
+\end{align*}
+
+\subsection{Solution for (c)}
+The magnitude of error is less than 0.8 if and only if \(-0.8 < x < 0.8\). Using
+the defintion of probability density function,
+\begin{align*}
+  P(-0.8 < x < 0.8) = \int^{0.8}_{-0.8} f(x) dx = \frac{209}{250}
+\end{align*}
+
+\section{Chapter 3 \#39}
+\subsection{Solution for (a)}
+The possible pairs of values of \(X\) and \(Y\), \((x, y)\) are
+\begin{align*}
+  (x, y) \in \{(0, 1), (1, 0), (0, 2), (1, 1), (2, 0), (1, 2), (2, 1), (3, 0),
+  (2, 2), (3, 1)\}
+\end{align*}
+Let \(f(x, y)\) be the joint probability distribution. Then, \(f(x, y)\) denote
+the probability of picking \(x\) oranges, \(y\) apples and \((4 - x - y)\)
+bananas. In total, there are \(8 \choose 4\) ways of picking fruits, so we can
+write
+\begin{align*}
+  f(x, y)
+  = \frac{{3 \choose x} {2 \choose y} {3 \choose {4 - x - y}}}{{8 \choose 4}}
+\end{align*}
+for \(x \in \{0, 1, 2, 3\}, y \in \{0, 1, 2\}, 1 \leq x + y \leq 4\).
+
+\subsection{Solution for (b)}
+We can write
+\begin{align*}
+  P[(X, Y) \in A]
+  &= P(X + Y \leq 2)
+  = f(0, 1) + f(1, 0) + f(0, 2) + f(1, 1) + f(2, 0) \\
+  &= \frac{1}{35} + \frac{3}{70} + \frac{3}{70} + \frac{9}{35} + \frac{9}{70}
+  = \frac{1}{2}
+\end{align*}
+
+\section{Chapter 3 \#40}
+\subsection{Solution for (a)}
+Let \(g(x)\) be the marginal density of \(X\). By the defintion of marginal
+density,
+\begin{align*}
+  g(x)
+  = \int^\infty_{-\infty} f(x, y) dy
+  = \int^1_0 f(x, y) dy
+  = \int^1_0 \frac{2}{3} (x + 2y) dy
+  = \left[ \frac{2xy}{3} + \frac{2y^2}{3} \right]^1_{y = 0}
+  = \frac{2x + 2}{3}
+\end{align*}
+
+\subsection{Solution for (b)}
+Let \(h(y)\) be the marginal density of \(Y\). By the defintion of marginal
+density,
+\begin{align*}
+  h(y)
+  = \int^\infty_{-\infty} f(x, y) dx
+  = \int^1_0 f(x, y) dx
+  = \int^1_0 \frac{2}{3} (x + 2y) dx
+  = \left[ \frac{x^2}{3} + \frac{4xy}{3} \right]^1_{x = 0}
+  = \frac{4y + 1}{3}
+\end{align*}
+
+\subsection{Solution for (c)}
+Using the defintion of marginal density, we can write
+\begin{align*}
+  P(X \leq 1 / 2)
+  &= P(X \leq 1 / 2, -\infty < Y < \infty)
+  = \int^{\frac{1}{2}}_{-\infty} \int^\infty_{-\infty} f(x, y) dy dx \\
+  &= \int^{\frac{1}{2}}_0 g(x) dx = \frac{5}{12}
+\end{align*}
+
+\section{Chapter 3 \#47}
+\subsection{Solution for (a)}
+Let \(g(x), h(y)\) be the marginal deinsities of \(X\) and \(Y\). By the
+defintion of marginal density,
+\begin{align*}
+  g(x)
+  &= \int^\infty_{-\infty} f(x, y) dy
+  = \int^1_x 2 dy
+  = 2(1 - x) \\
+  h(y)
+  &= \int^\infty_{-\infty} f(x, y) dx
+  = \int^y_0 2 dx
+  = 2y
+\end{align*}
+By plugging \(x = y = 1/2\), we obtain
+\begin{align*}
+  f(1/2, 1/2) = 2 \not = g(1/2) h(1/2) = 1
+\end{align*}
+Thus, \(X\) and \(Y\) are dependent.
+
+\subsection{Solution for (b)}
+We can write
+\begin{align*}
+  P(1/4 < X < 1/2 | Y = 3/4)
+  = \int^\frac{1}{2}_\frac{1}{4} f(x | 3/4) dx
+  = \int^\frac{1}{2}_\frac{1}{4} \frac{f(x, 3/4)}{h(3/4)} dx
+  = \int^\frac{1}{2}_\frac{1}{4} \frac{2}{4/3} dx
+  = \frac{3}{8}
+\end{align*}
+
+\end{document}
+% vim: textwidth=79
