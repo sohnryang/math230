@@ -1,0 +1,169 @@
+\documentclass{scrartcl}
+\usepackage[margin=3cm]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{blindtext}
+\usepackage{datetime}
+\usepackage{fontspec}
+\usepackage{graphicx}
+\usepackage{kotex}
+\usepackage{mathrsfs}
+\usepackage{mathtools}
+\usepackage{pgf,tikz,pgfplots}
+\usepackage{float}
+
+\pgfplotsset{compat=1.15}
+\usetikzlibrary{arrows}
+
+\newcommand\Overline[2][0.8pt]{%
+  \begin{tikzpicture}[baseline=(a.base)]
+    \node[inner xsep=0pt,inner ysep=1.5pt] (a) {$#2$};
+    \draw[line width= #1] (a.north west) -- (a.north east);
+  \end{tikzpicture}
+}
+\newtheorem{theorem}{Theorem}
+
+\setmainhangulfont{Noto Serif CJK KR}[
+  UprightFont=* Light, BoldFont=* Bold,
+  Script=Hangul, Language=Korean, AutoFakeSlant,
+]
+\setsanshangulfont{Noto Sans CJK KR}[
+  UprightFont=* DemiLight, BoldFont=* Medium,
+  Script=Hangul, Language=Korean
+]
+\setmathhangulfont{Noto Sans CJK KR}[
+  SizeFeatures={
+    {Size=-6,  Font=* Medium},
+    {Size=6-9, Font=*},
+    {Size=9-,  Font=* DemiLight},
+  },
+  Script=Hangul, Language=Korean
+]
+\title{MATH230: Homework 4 (due Oct. 9)}
+\author{손량(20220323)}
+\date{Last compiled on: \today, \currenttime}
+
+\newcommand{\un}[1]{\ensuremath{\ \mathrm{#1}}}
+\newcommand{\imag}{\operatorname{Im}}
+\newcommand{\real}{\operatorname{Re}}
+\newcommand{\Log}{\operatorname{Log}}
+\newcommand{\Arg}{\operatorname{Arg}}
+\DeclareMathOperator*{\Res}{Res}
+
+\begin{document}
+\maketitle
+
+\section{Chapter 5 \#5}
+\subsection{Solution for (a)}
+Let \(X\) be the number of pipework failure in the chemical plant. Assuming
+that the failures of pipework are independent, \(X\) follows a \(b(x; 20,
+0.3)\). Then the probability we are looking for is \(P(X \ge 10)\).
+\begin{align*}
+  P(X \ge 10)
+  = 1 - P(X < 10)
+  = 1 - \sum^9_{x = 0} b(x; 20, 0.3)
+  = 1 - 0.95204
+  = 0.04796
+\end{align*}
+
+\subsection{Solution for (b)}
+The probability we are interested in is \(P(X \le 4)\).
+\begin{align*}
+  P(X \le 4)
+  = \sum^4_{x = 0} b(x; 20, 0.3)
+  = 0.23751
+\end{align*}
+
+\subsection{Solution for (c)}
+The probability of five pipes failing due to operator error is \(P(X = 5)\),
+and we can write
+\begin{align*}
+  P(X = 5)
+  = {20 \choose 5} \left( \frac{3}{10} \right)^5
+    \left( \frac{7}{10} \right)^{15}
+  = 0.17886
+\end{align*}
+The probability is not that small, so \(p = 0.3\) is reasonable.
+
+\section{Chapter 5 \#22}
+Using multinomial distribution, we can write
+\begin{align*}
+  {8 \choose 5, 2, 1} \left( \frac{1}{2} \right)^5 \left( \frac{1}{4} \right)^2
+    \left( \frac{1}{4} \right)^1
+  = \frac{21}{256}
+\end{align*}
+
+\section{Chapter 5 \#32}
+Let \(X\) be the number of missiles in the selection which are not defective.
+Then, \(X\) follows a \(h(x; 10, 3, 6)\).
+
+\subsection{Solution for (a)}
+The probability we are interested in is \(P(X = 3)\).
+\begin{align*}
+  P(X = 3)
+  = h(3; 10, 3, 6)
+  = \frac{1}{6}
+\end{align*}
+
+\subsection{Solution for (b)}
+The probability we are interested in is \(P(X \ge 1)\).
+\begin{align*}
+  P(X \ge 1)
+  = 1 - P(X = 0)
+  = 1 - h(1; 10, 3, 6)
+  = \frac{29}{30}
+\end{align*}
+
+\section{Chapter 5 \#51}
+Let \(X\) be the number of coin tosses required before the person to buy
+coffeee is determined. There are \(2^3 = 8\) possible outcomes of three coins,
+and two of the outcome is all heads or all tails. Thus, the probability of
+determining the buyer in a trial is \(p = 1 - 2/8 = 3/4\). As all coin tosses
+are independent, \(X\) follows a \(g(x; p)\). The probability we are interested
+in is \(P(X < 3)\).
+\begin{align*}
+  P(X < 3)
+  = \sum^2_{n = 1} pq^{n - 1}
+  = \sum^2_{n = 1} \left( \frac{3}{4} \right) \left( \frac{1}{4} \right)^{n - 1}
+  = \frac{15}{16}
+\end{align*}
+
+\section{Chapter 5 \#57}
+Let \(X\) be the number of word-processing errors made in the next page. Then,
+as the author makes two word-processing errors per page, \(X\) follows a \(p(x;
+2)\).
+
+\subsection{Solution for (a)}
+The probability we are interested in is \(P(X \ge 4)\).
+\begin{align*}
+  P(X \ge 4)
+  = \sum^\infty_{x = 4} p(x; 2)
+  = \sum^\infty_{x = 4} \frac{e^{-2} 2^x}{x!}
+  = e^{-2} \left[ e^2 - \left( 1 + \frac{2}{1} + \frac{2^2}{2!}
+    + \frac{2^3}{3!} \right) \right]
+  = 0.14288
+\end{align*}
+
+\subsection{Solution for (b)}
+The probability we are interested in is \(P(X = 0)\).
+\begin{align*}
+  P(X = 0)
+  = p(0; 2)
+  = e^{-2}
+\end{align*}
+
+\section{Chapter 5 \#75}
+Let \(X\) be the first shift that the robot fails. Then \(X\) follows a \(g(x;
+0.1)\), and the probability we are interested in is \(P(X \le 6)\).
+\begin{align*}
+  P(X \le 6)
+  = \sum^6_{n = 1} g(x; 0.1)
+  = \sum^6_{n = 1} pq^{n - 1}
+  = \sum^6_{n = 1}
+    \left( \frac{1}{10} \right) \left( \frac{9}{10} \right)^{n - 1}
+  = 0.468559
+\end{align*}
+
+\end{document}
+% vim: textwidth=79
