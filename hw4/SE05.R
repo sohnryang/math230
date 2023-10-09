@@ -4,7 +4,7 @@ p <- sum(bino_dist)
 print(p)
 
 ### SA05 Problem 2
-x <- qbinom(0.1, 29, 0.356)
+x <- qbinom(0.9, 38, 0.424) + 1
 print(x)
 
 ### SA05 Problem 3
