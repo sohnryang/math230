@@ -24,6 +24,7 @@ negbino_dist <- dnbinom(0:7, 7, 0.29)
 p_negbino <- sum(negbino_dist)
 print(p_negbino)
 
+### SA05 Problem 4b
 pois_dist <- dpois(0:4, 3.2)
 p_pois <- 1 - sum(pois_dist)
 print(p_pois)
