@@ -181,5 +181,51 @@ in is \(P(T > 1)\).
 As stated earlier, \(T\) follows an exponential distribution with mean \(1 /
 5\).
 
+\section{Supplemental Exercises}
+\subsection{Solution for \#1}
+For mean, we can write
+\begin{align*}
+  E(|Z|)
+  = \int^\infty_{-\infty} \frac{|z|}{\sqrt{2\pi}} e^{-\frac{1}{2}z^2} dz
+  = \frac{2}{\sqrt{2\pi}} \int^\infty_0 z e^{-\frac{1}{2}z^2} dz
+  = \frac{2}{\sqrt{2\pi}} \left[ -e^{-\frac{1}{2}z^2} \right]^\infty_0
+  = \sqrt{\frac{2}{\pi}}
+\end{align*}
+For variance, as \(Z\) follows standard normal distribution,
+\begin{align*}
+  \sigma^2_|Z|
+  &= E(|Z|^2) - (E(|Z|))^2
+  = E(Z^2) - (E(|Z|))^2 \\
+  &= E(Z^2) - (E(Z))^2 + (E(Z))^2 - (E(|Z|))^2
+  = 1 + 0 - \frac{2}{\pi}
+  = 1 - \frac{2}{\pi}
+\end{align*}
+
+\subsection{Solution for \#2}
+We can write
+\begin{align*}
+  E(Z^4)
+  &= \int^\infty_{-\infty} \frac{z^4}{\sqrt{2\pi}} e^{-\frac{1}{2}z^2} dz
+  = \frac{1}{\sqrt{2\pi}}
+    \left( \left[ -z^3 e^{-\frac{1}{2}z^2} \right]^\infty_{-\infty}
+    - \int^\infty_{-\infty} (-3z^2) e^{-\frac{1}{2}z^2} dz \right) \\
+  &= 3 \int^\infty_{-\infty} \frac{z^2}{\sqrt{2\pi}} e^{-\frac{1}{2}z^2} dz
+  = 3E(Z^2)
+  = 3[1 + (E(Z))^2]
+  = 3
+\end{align*}
+
+\subsection{Solution for \#3}
+Let \(R(t)\) be the probability of the battery lasting more than \(t\) years.
+By the relationship of \(R(t)\) and \(k(t)\) outlined in the lecture note, we
+can write
+\begin{align*}
+  R(4)
+  &= \exp \left[ -\int^4_0 k(s) ds \right]
+  = \exp \left[ -\int^2_0 0.05 ds - \int^4_2 (0.05t - 0.05) dt \right] \\
+  &= \exp \left( -0.1 - \left[ 0.025t^2 - 0.05t \right]^4_2 \right)
+  = \exp (-0.3)
+\end{align*}
+
 \end{document}
 % vim: textwidth=79
