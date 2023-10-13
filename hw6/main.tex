@@ -1,0 +1,185 @@
+\documentclass{scrartcl}
+\usepackage[margin=3cm]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{blindtext}
+\usepackage{datetime}
+\usepackage{fontspec}
+\usepackage{graphicx}
+\usepackage{kotex}
+\usepackage{mathrsfs}
+\usepackage{mathtools}
+\usepackage{pgf,tikz,pgfplots}
+\usepackage{float}
+
+\pgfplotsset{compat=1.15}
+\usetikzlibrary{arrows}
+
+\newcommand\Overline[2][0.8pt]{%
+  \begin{tikzpicture}[baseline=(a.base)]
+    \node[inner xsep=0pt,inner ysep=1.5pt] (a) {$#2$};
+    \draw[line width= #1] (a.north west) -- (a.north east);
+  \end{tikzpicture}
+}
+\newtheorem{theorem}{Theorem}
+
+\setmainhangulfont{Noto Serif CJK KR}[
+  UprightFont=* Light, BoldFont=* Bold,
+  Script=Hangul, Language=Korean, AutoFakeSlant,
+]
+\setsanshangulfont{Noto Sans CJK KR}[
+  UprightFont=* DemiLight, BoldFont=* Medium,
+  Script=Hangul, Language=Korean
+]
+\setmathhangulfont{Noto Sans CJK KR}[
+  SizeFeatures={
+    {Size=-6,  Font=* Medium},
+    {Size=6-9, Font=*},
+    {Size=9-,  Font=* DemiLight},
+  },
+  Script=Hangul, Language=Korean
+]
+\title{MATH230: Homework 6 (due Oct. 16)}
+\author{손량(20220323)}
+\date{Last compiled on: \today, \currenttime}
+
+\newcommand{\un}[1]{\ensuremath{\ \mathrm{#1}}}
+\newcommand{\imag}{\operatorname{Im}}
+\newcommand{\real}{\operatorname{Re}}
+\newcommand{\Log}{\operatorname{Log}}
+\newcommand{\Arg}{\operatorname{Arg}}
+\DeclareMathOperator*{\Res}{Res}
+
+\begin{document}
+\maketitle
+
+\section{Chapter 6 \#1}
+\subsection{Solution for (a)}
+We can write
+\begin{align*}
+  \mu
+  = \int^\infty_{-\infty} x f(x; A, B) dx
+  = \int^B_A \frac{x}{B - A} dx
+  = \left[ \frac{x^2}{2(B - A)} \right]^B_A
+  = \frac{A + B}{2}
+\end{align*}
+
+\subsection{Solution for (b)}
+We can write
+\begin{align*}
+  \sigma^2
+  &= \int^\infty_{-\infty} (x - \mu)^2 f(x; A, B) dx
+  = \int^B_A \left( x - \frac{A + B}{2} \right)^2 \frac{1}{B - A} dx \\
+  &= \frac{1}{B - A}
+    \left[ \frac{1}{3} \left( x - \frac{A + B}{2} \right)^3 \right]^B_A
+  = \frac{1}{3(B - A)} \cdot 2 \left( \frac{B - A}{2} \right)^3
+  = \frac{(B - A)^2}{12}
+\end{align*}
+
+\section{Chapter 6 \#2}
+We can write
+\begin{align*}
+  P(X < 3.5\; |\; X \ge 1)
+  = \frac{P(1 \le X < 3.5)}{P(X \ge 1)}
+  = \frac{\int^{3.5}_1 f(x; 0, 5) dx}{\int^\infty_1 f(x; 0, 5) dx}
+  = \frac{\int^{3.5}_1 \frac{1}{5} dx}{\int^5_1 \frac{1}{5} dx}
+  = \frac{5}{8}
+\end{align*}
+
+\section{Chapter 6 \#10}
+Let \(\Phi(z)\) be distribution function of standard normal distribution. Then
+we can write
+\begin{align*}
+  P(\mu - 2\sigma < X < \mu + 2\sigma)
+  = \Phi(2) - \Phi(-2)
+\end{align*}
+According to the table~A.3 in the textbook, we can conclude that the quantity
+in question is \(0.9544\).
+
+\section{Chapter 6 \#49}
+\subsection{Solution for (a)}
+We can write
+\begin{align*}
+  \mu = \frac{\alpha}{\alpha + \beta} = \frac{1}{1 + 3} = \frac{1}{4}
+\end{align*}
+For median, we can calculate the integral from 0 to \(t\), where \(0 < t < 1\).
+\begin{align*}
+  F(t)
+  &= \int^t_0 \frac{1}{B(1, 3)} (1 - x)^2 dx
+  = \frac{\Gamma(4)}{\Gamma(1) \Gamma(3)} \int^t_0 (1 - x)^2 dx
+  = 3 \left[ -\frac{1}{3} (1 - x)^3 \right]^t_0 \\
+  &= 1 - (1 - t)^3
+\end{align*}
+Then, the solution of \(F(t) = 1/2\) is \(t = 1 - \sqrt[3]{1/2}\) and it is the
+median.
+
+\subsection{Solution for (b)}
+According to the formula of variance of gamma distribution,
+\begin{align*}
+  \sigma^2
+  = \frac{\alpha \beta}{(\alpha + \beta)^2 (\alpha + \beta + 1)}
+  = \frac{3}{4^2 \cdot 5}
+  = \frac{3}{80}
+\end{align*}
+
+\section{Chapter 6 \#53}
+\subsection{Solution for (a)}
+According to the formula of mean of gamma distribution,
+\begin{align*}
+  \mu
+  = \frac{\alpha}{\alpha + \beta}
+  = \frac{5}{5 + 10}
+  = \frac{1}{3}
+\end{align*}
+
+\subsection{Solution for (b)}
+According to the formula of variance of gamma distribution,
+\begin{align*}
+  \sigma^2
+  = \frac{\alpha \beta}{(\alpha + \beta)^2 (\alpha + \beta + 1)}
+  = \frac{50}{15^2 \cdot 16}
+  = \frac{1}{72}
+\end{align*}
+
+\section{Chapter 6 \#58}
+\subsection{Solution for (a)}
+Let \(N(t)\) be the number of cars passed in first \(t\) minutes. Then \(N(t)\)
+follows a \(p(x; 5)\). The probability we are interested in is \(P(N(t) >
+10)\).
+\begin{align*}
+  P(N(t) > 10)
+  = 1 - \sum^{10}_{x = 0} P(N(t) = x)
+  = 1 - \sum^{10}_{x = 0} \frac{e^{-5} \cdot 5^x}{x!}
+  = 0.01370
+\end{align*}
+
+\subsection{Solution for (b)}
+Let \(X\) be the arrival time of the tenth car. Then the probability we are
+interested in is \(P(X > 2)\). Using the relation of exponential distribution
+and Poisson distribution,
+\begin{align*}
+  P(X > 2)
+  = P(N(2) < 10)
+  = \sum^9_{k = 0} e^{-10} \cdot \frac{10^k}{k!}
+  = 0.45793
+\end{align*}
+
+\section{Chapter 6 \#59}
+\subsection{Solution for (a)}
+By definition of Poisson process, the time \(T\) between events follows an
+exponential distribution with mean \(1 / 5\). The probability we are interested
+in is \(P(T > 1)\).
+\begin{align*}
+  P(T > 1)
+  = \frac{e^{-5} \cdot (5)^0}{0!}
+  = e^{-5}
+  = 0.00674
+\end{align*}
+
+\subsection{Solution for (b)}
+As stated earlier, \(T\) follows an exponential distribution with mean \(1 /
+5\).
+
+\end{document}
+% vim: textwidth=79
