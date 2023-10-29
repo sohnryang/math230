@@ -256,5 +256,20 @@ We can write
   = \frac{1}{18}
 \end{align*}
 
+\section{Supplemental Exercises \#3 (a)}
+Let \(\phi(x)\) be probability density function of standard normal
+distribution. Since \(\mathrm{Cov}((X_1 + 1)^2, X_2) = 0\),
+\begin{align*}
+  E(Y)
+  &= E((X_1 + 1)^2 + X_2)
+  = E((X_1 + 1)^2) + E(X_2)
+  = \int^\infty_{-\infty} (x + 1)^2 \phi(x) dx \\
+  &= \int^\infty_{-\infty} x^2 \phi(x) dx + \int^\infty_{-\infty} 2x \phi(x) dx
+    + \int^\infty_{-\infty} \phi(x) dx
+  = E(X^2_1) + E(X_1) + 1 \\
+  &= \mathrm{Var}(X_1) + (E(X_1))^2 + E(X_1) + 1
+  = 2
+\end{align*}
+
 \end{document}
 % vim: textwidth=79
