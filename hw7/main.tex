@@ -222,5 +222,39 @@ Using the definition of conditional probability,
   = \frac{1}{u + 1}
 \end{align*}
 
+\section{Supplemental Exercises \#1}
+We can write
+\begin{align*}
+  P(D = 0)
+  &= \sum^5_{x = 0} P(X_1 = x) P(X_2 = x)
+  = 6 \cdot \frac{1}{6^2}
+  = \frac{1}{6} \\
+  P(D = 1)
+  &= \sum^4_{x = 0} P(X_1 = x) P(X_2 = x + 1)
+    + \sum^4_{x = 0} P(X_1 = x + 1) P(X_2 = x) \\
+  &= 2 \cdot 5 \cdot \frac{1}{6^2}
+  = \frac{5}{18} \\
+  P(D = 2)
+  &= \sum^3_{x = 0} P(X_1 = x) P(X_2 = x + 2)
+    + \sum^3_{x = 0} P(X_1 = x + 2) P(X_2 = x) \\
+  &= 2 \cdot 4 \cdot \frac{1}{6^2}
+  = \frac{2}{9} \\
+  P(D = 3)
+  &= \sum^2_{x = 0} P(X_1 = x) P(X_2 = x + 3)
+    + \sum^2_{x = 0} P(X_1 = x + 3) P(X_2 = x) \\
+  &= 2 \cdot 3 \cdot \frac{1}{6^2}
+  = \frac{1}{6} \\
+  P(D = 4)
+  &= \sum^1_{x = 0} P(X_1 = x) P(X_2 = x + 4)
+    + \sum^1_{x = 0} P(X_1 = x + 4) P(X_2 = x) \\
+  &= 2 \cdot 2 \cdot \frac{1}{6^2}
+  = \frac{1}{9} \\
+  P(D = 5)
+  &= \sum^0_{x = 0} P(X_1 = x) P(X_2 = x + 5)
+    + \sum^0_{x = 0} P(X_1 = x + 5) P(X_2 = x) \\
+  &= 2 \cdot 1 \cdot \frac{1}{6^2}
+  = \frac{1}{18}
+\end{align*}
+
 \end{document}
 % vim: textwidth=79
