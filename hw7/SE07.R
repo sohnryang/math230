@@ -14,6 +14,7 @@ print(dist)
 ### SE07 Problem 3 (a)
 # Refer to the PDF file for derivation.
 y_mean_exact <- 2
+print(y_mean_exact)
 
 ### SE07 Problem 3 (b)
 x1_samples <- rnorm(sample_num)
@@ -25,4 +26,5 @@ plot(density(y_samples))
 
 ### SE07 Problem 3 (d)
 y_mean_numeric = mean(y_samples)
+print(y_mean_numeric)
 print(abs(y_mean_numeric - y_mean_exact))
