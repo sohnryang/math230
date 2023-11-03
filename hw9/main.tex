@@ -1,0 +1,157 @@
+\documentclass{scrartcl}
+\usepackage[margin=3cm]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{blindtext}
+\usepackage{datetime}
+\usepackage{fontspec}
+\usepackage{graphicx}
+\usepackage{kotex}
+\usepackage{mathrsfs}
+\usepackage{mathtools}
+\usepackage{pgf,tikz,pgfplots}
+\usepackage{float}
+
+\pgfplotsset{compat=1.15}
+\usetikzlibrary{arrows}
+
+\newcommand\Overline[2][0.8pt]{%
+  \begin{tikzpicture}[baseline=(a.base)]
+    \node[inner xsep=0pt,inner ysep=1.5pt] (a) {$#2$};
+    \draw[line width= #1] (a.north west) -- (a.north east);
+  \end{tikzpicture}
+}
+\newtheorem{theorem}{Theorem}
+
+\setmainhangulfont{Noto Serif CJK KR}[
+  UprightFont=* Light, BoldFont=* Bold,
+  Script=Hangul, Language=Korean, AutoFakeSlant,
+]
+\setsanshangulfont{Noto Sans CJK KR}[
+  UprightFont=* DemiLight, BoldFont=* Medium,
+  Script=Hangul, Language=Korean
+]
+\setmathhangulfont{Noto Sans CJK KR}[
+  SizeFeatures={
+    {Size=-6,  Font=* Medium},
+    {Size=6-9, Font=*},
+    {Size=9-,  Font=* DemiLight},
+  },
+  Script=Hangul, Language=Korean
+]
+\title{MATH230: Homework 9 (due Nov. 6)}
+\author{손량(20220323)}
+\date{Last compiled on: \today, \currenttime}
+
+\newcommand{\un}[1]{\ensuremath{\ \mathrm{#1}}}
+\newcommand{\imag}{\operatorname{Im}}
+\newcommand{\real}{\operatorname{Re}}
+\newcommand{\Log}{\operatorname{Log}}
+\newcommand{\Arg}{\operatorname{Arg}}
+\DeclareMathOperator*{\Res}{Res}
+
+\begin{document}
+\maketitle
+
+\section{Chapter 8 \#8}
+\subsection{Solution for (a)}
+Adding up the numbers and dividing them with sample size, 12, we get \(428 / 12
+= 35.67\) grams.
+
+\subsection{Solution for (b)}
+After sorting the samples in increasing order, the 6th and 7th samples are 31
+and 34, respectively. Thus, the median is \((31 + 34) / 2 = 32.5\) grams.
+
+\subsection{Solution for (c)}
+Of all the sample, 29 grams appeared the most frequently. Thus, the mode is 29.
+
+\section{Chapter 8 \#23}
+\subsection{Solution for (a)}
+We can write
+\begin{align*}
+  \mu
+  &= \sum_{x \in \{4, 5, 6, 7\}} x P(X = x)
+  = 4 (0.2) + 5 (0.4) + 6 (0.3) + 7 (0.1)
+  = 5.3 \\
+  \sigma^2
+  &= \sum_{x \in \{4, 5, 6, 7\}} (x - \mu)^2 P(X = x)
+  = \frac{81}{100}
+\end{align*}
+
+\subsection{Solution for (b)}
+As sample distribution's mean is same as original distribution's mean, \(\mu_X
+= \mu = 5.3\). Also, since \(n = 36\), the variance is \(\sigma^2_X = \sigma^2
+/ n = 9 / 400\).
+
+\subsection{Solution for (c)}
+We can write
+\begin{align*}
+  P(\bar{X} \ge 5.5)
+  = P(\bar{X} - 5.3 \ge 0.2)
+  = P \left( \frac{\bar{X} - 5.3}{0.9 / \sqrt{36}} \ge \frac{4}{3} \right)
+\end{align*}
+As the sample size is sufficient, by applying the central~limit~theorem, for
+\(Z \sim N(0, 1)\) we can write
+\begin{align*}
+  P \left( \frac{\bar{X} - 5.3}{0.9 / \sqrt{36}} \ge \frac{4}{3} \right)
+  \simeq P \left(Z \ge \frac{4}{3} \right)
+  = 1 - P \left( X < \frac{4}{3} \right)
+  = 0.09121122
+\end{align*}
+Thus, the probability we are looking for is
+\begin{align*}
+  P(\bar{X} < 5.5)
+  = 1 - P(\bar{X} \ge 5.5)
+  = 1 - 0.09121122
+  = 0.9087888
+\end{align*}
+
+\section{Chapter 8 \#25}
+\subsection{Solution for (a)}
+Let \(X_1, X_2, X_3, X_4\) be the random samples. They follow normal
+distribution of mean \(\mu = 18\), and variance \(\sigma^2 = 3^2\). Let
+\(\bar{X}\) be the sample mean. Then, \(\bar{X}\) has mean \(\mu_X = \mu\) and
+variance \(\sigma^2_X = \sigma^2 / 4\). Moreover, since \(\bar{X}\) is linear
+combination of normally distributed random variables, it is also normally
+distributed. Then we can write
+\begin{align*}
+  P(16 < \bar{X} < 19)
+  = \Phi \left( \frac{19 - \mu}{\sigma} \right)
+    - \Phi \left( \frac{16 - \mu}{\sigma} \right)
+  = 0.6562962
+\end{align*}
+where \(\Phi\) is probability mass function of standard normal distribution.
+
+\subsection{Solution for (b)}
+Let \(\bar{X'}\) be the sample mean of 5 samples. Then, \(P(\bar{X'} > \bar{x})
+= 0.2\) holds. As \(\bar{X'}\) is normally distributed with mean \(\mu\) and
+variance \(\sigma^2 / 5\), \(\Phi((\bar{x} - \mu) / (\sigma / \sqrt{5})) =
+0.8\) should hold. Using a calculator, we can conclude that the value of
+\(\bar{x}\) is about 19.12915.
+
+\section{Chapter 8 \#41}
+Let \(n = 30\). Then we can write
+\begin{align*}
+  \frac{(n - 1)S^2}{\sigma^2} \sim \chi^2_{n - 1}
+\end{align*}
+
+\subsection{Solution for (a)}
+Using a calculator's help,
+\begin{align*}
+  P(S^2 > 7.338)
+  = P \left( \frac{(n - 1) S^2}{\sigma^2} > 42.5604 \right)
+  = 0.04996394
+\end{align*}
+
+\subsection{Solution for (b)}
+Using a calculator's help,
+\begin{align*}
+  P(2.766 < S^2 < 7.883)
+  &= P \left( \frac{(n - 1) S^2}{\sigma^2} < 42.5604 \right)
+    - P \left( \frac{(n - 1) S^2}{\sigma^2} < 16.0428 \right) \\
+  &= 0.9250851
+\end{align*}
+
+\end{document}
+% vim: textwidth=79
