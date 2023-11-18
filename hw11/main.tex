@@ -1,0 +1,212 @@
+\documentclass{scrartcl}
+\usepackage[margin=3cm]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{blindtext}
+\usepackage{datetime}
+\usepackage{fontspec}
+\usepackage{graphicx}
+\usepackage{kotex}
+\usepackage{mathrsfs}
+\usepackage{mathtools}
+\usepackage{pgf,tikz,pgfplots}
+\usepackage{float}
+
+\pgfplotsset{compat=1.15}
+\usetikzlibrary{arrows}
+
+\newcommand\Overline[2][0.8pt]{%
+  \begin{tikzpicture}[baseline=(a.base)]
+    \node[inner xsep=0pt,inner ysep=1.5pt] (a) {$#2$};
+    \draw[line width= #1] (a.north west) -- (a.north east);
+  \end{tikzpicture}
+}
+\newtheorem{theorem}{Theorem}
+
+\setmainhangulfont{Noto Serif CJK KR}[
+  UprightFont=* Light, BoldFont=* Bold,
+  Script=Hangul, Language=Korean, AutoFakeSlant,
+]
+\setsanshangulfont{Noto Sans CJK KR}[
+  UprightFont=* DemiLight, BoldFont=* Medium,
+  Script=Hangul, Language=Korean
+]
+\setmathhangulfont{Noto Sans CJK KR}[
+  SizeFeatures={
+    {Size=-6,  Font=* Medium},
+    {Size=6-9, Font=*},
+    {Size=9-,  Font=* DemiLight},
+  },
+  Script=Hangul, Language=Korean
+]
+\title{MATH230: Homework 11 (due Nov. 20)}
+\author{손량(20220323)}
+\date{Last compiled on: \today, \currenttime}
+
+\newcommand{\un}[1]{\ensuremath{\ \mathrm{#1}}}
+\newcommand{\imag}{\operatorname{Im}}
+\newcommand{\real}{\operatorname{Re}}
+\newcommand{\Log}{\operatorname{Log}}
+\newcommand{\Arg}{\operatorname{Arg}}
+\DeclareMathOperator*{\Res}{Res}
+
+\begin{document}
+\maketitle
+
+\section{Chapter 9 \#3}
+By using the provided values, we can plug \(\sigma = 0.0015, n = 75, \bar{x} =
+0.310, \alpha = 0.05\) to the formula for confidence invterval, we get
+\begin{align*}
+  \bar{x} \pm z_\frac{\alpha}{2} \frac{\sigma}{\sqrt{n}}
+  = 0.310 \pm 0.0003394757
+\end{align*}
+which can be written as \((0.3096605, 0.3103395)\).
+
+\section{Chapter 9 \#7}
+Let \(d = 0.0005\), then a lower bound of sample size required can be
+calculated as
+\begin{align*}
+  \left( \frac{z_\frac{\alpha}{2} \sigma}{d} \right)^2
+  = 34.57313
+\end{align*}
+Thus, at least 35 samples are needed.
+
+\section{Chapter 9 \#11}
+In this case, the variance of the distribution is not known, so we have to
+resort to the formula involving sample variance. Plugging in \(n = 9, \bar{x} =
+1.005556, s = 0.02455153, \alpha = 0.05\), we get
+\begin{align*}
+  \bar{x} \pm t_{(n - 1), \frac{\alpha}{2}} \frac{s}{\sqrt{n}}
+  = 1.005556 \pm 0.01887198
+\end{align*}
+which can be written as \((0.9866836, 1.024428)\).
+
+\section{Chapter 9 \#30}
+\subsection{Solution for (a)}
+Let \(\mu\) be the mean of the original distribution. We can write
+\begin{align*}
+  \sum^n_{i = 1} (X_i - \mu)^2
+  &= \sum^n_{i = 1} (X_i - \bar{X} + \bar{X} - \mu)^2 \\
+  &= \sum^n_{i = 1} (X_i - \bar{X})^2
+    + 2(\bar{X} - \mu) \sum^n_{i = 1} (X_i - \bar{X})
+    + n (\bar{X} - \mu)^2 \\
+  &= \sum^n_{i = 1} (X_i - \bar{X})^2
+    + n (\bar{X} - \mu)^2
+\end{align*}
+By taking expectations of both sides, we get
+\begin{align*}
+  n\sigma^2
+  = E \left( \sum^n_{i = 1} (X_i - \bar{X})^2 \right)
+    + n \cdot \frac{\sigma^2}{n}
+\end{align*}
+Thus, we can write
+\begin{align*}
+  E(S'^2)
+  = \frac{n - 1}{n} \sigma^2
+\end{align*}
+In conclusion, the bias is \(E(S'^2 - \sigma^2) = E(S'^2) - \sigma^2 =
+-\sigma^2 / n\).
+
+\subsection{Solution for (b)}
+It is well known that \(1 / n\) converges to zero as \(n \to \infty\), so the
+bias \(-\sigma^2 / n\) also converges to zero as \(n \to \infty\).
+
+\section{Chapter 9 \#31}
+\subsection{Solution for (a)}
+As \(E(X) = np\), \(E(\hat{P}) = E(X / n) = E(X) / n = np / n = p\), so the
+bias is \(E(\hat{P} - p) = E(\hat{P}) - p = 0\). Thus, \(\hat{P}\) is an
+unbiased estimator of \(p\).
+
+\subsection{Solution for (b)}
+We can write
+\begin{align*}
+  E(P')
+  = E \left( \frac{X + \sqrt{n} / 2}{n + \sqrt{n}} \right)
+  = \frac{E(X) + \sqrt{n} / 2}{n + \sqrt{n}}
+  = \frac{np + \sqrt{n} / 2}{n + \sqrt{n}}
+\end{align*}
+Then, the bias can be calculated as
+\begin{align*}
+  E(P' - p)
+  = E(P') - p
+  = \frac{np + \sqrt{n} / 2}{n + \sqrt{n}} - p
+  = \frac{\sqrt{n} / 2 - p\sqrt{n}}{n + \sqrt{n}}
+  \not = 0
+\end{align*}
+Thus, \(P'\) is a biased estimator of \(p\).
+
+\subsection{Solution for (c)}
+Letting \(q = 1 - p\), We can write
+\begin{align*}
+  \mathrm{MSE}(\hat{P})
+  &= E((\hat{P} - p)^2)
+  = E(\hat{P}^2) - 2p E(\hat{P}) + p^2
+  = \frac{E(X^2)}{n^2} - p^2 \\
+  &= \frac{\mathrm{Var}(X) + (E(X))^2}{n^2} - p^2
+  = \frac{npq + n^2 p^2}{n^2} - p^2
+  = \frac{pq}{n} \\
+  \mathrm{MSE}(P')
+  &= E((P' - p)^2)
+  = E(P'^2) - 2p E(P') + p^2 \\
+  &= E \left( \left( \frac{X + \sqrt{n} / 2}{n + \sqrt{n}} \right)^2 \right)
+    - 2p \cdot \frac{np + \sqrt{n} / 2}{n + \sqrt{n}} + p^2 \\
+  &= \frac{E(X^2) + \sqrt{n} E(X) + n / 4}{(n + \sqrt{n})^2}
+    - 2p \cdot \frac{np + \sqrt{n} / 2}{n + \sqrt{n}} + p^2 \\
+  &= \frac{\mathrm{Var}(X) + (E(X))^2 + \sqrt{n} E(X) + n / 4}
+    {(n + \sqrt{n})^2}
+    - 2p \cdot \frac{np + \sqrt{n} / 2}{n + \sqrt{n}} + p^2 \\
+  &= \frac{npq + (np)^2 + \sqrt{n} np + n / 4}{(n + \sqrt{n})^2}
+    - 2p \cdot \frac{np + \sqrt{n} / 2}{n + \sqrt{n}} + p^2 \\
+  &=\frac{n + \sqrt{n}}{4[ n^2 + (3n + 1) \sqrt{n} + 3n]}
+\end{align*}
+
+\section{Chapter 9 \#33}
+We can write
+\begin{align*}
+  \mathrm{Var}(S^2)
+  &= \frac{\sigma^4}{(n - 1)^2}
+    \mathrm{Var} \left( \frac{(n - 1) S^2}{\sigma^2} \right)
+  = \frac{\sigma^4}{(n - 1)^2} \mathrm{Var}(\chi^2_{n - 1}) \\
+  &= \frac{\sigma^4}{(n - 1)^2} \cdot 2(n - 1)
+  = \frac{2\sigma^4}{n - 1} \\
+  \mathrm{Var}(S'^2)
+  &= \mathrm{Var} \left( \frac{n - 1}{n} S^2 \right)
+  = \frac{(n - 1)^2}{n^2} \mathrm{Var}(S^2)
+  = \frac{2\sigma^4 (n - 1)}{n^2}
+\end{align*}
+As \((n - 1)^{-2} > n^{-2}\), \((n - 1)^{-1} > (n - 1) / n^2\) holds, so
+\(\mathrm{Var}(S^2) > \mathrm{Var}(S'^2)\), which means that \(S'^2\) is more
+efficient, when considering only variance.
+
+\section{Chapter 9 \#34}
+We can write
+\begin{align*}
+  \mathrm{MSE}(S^2)
+  &= E((S^2 - \sigma^2)^2)
+  = E((S^2)^2) - 2\sigma^2 E(S^2) + \sigma^4 \\
+  &= \mathrm{Var}(S^2) + (E(S^2))^2 - 2\sigma^2 E(S^2) + \sigma^4
+  = \mathrm{Var}(S^2) + \sigma^4 - 2\sigma^4 + \sigma^4 \\
+  &= \mathrm{Var}(S^2)
+  = \frac{2\sigma^4}{n - 1} \\
+  \mathrm{MSE}(S'^2)
+  &= E((S'^2 - \sigma^2)^2)
+  = E((S'^2)^2) - 2\sigma^2 E(S'^2) + \sigma^4 \\
+  &= \mathrm{Var}(S'^2) + (E(S'^2))^2 - 2\sigma^2 E(S'^2) + \sigma^4 \\
+  &= \frac{2\sigma^4 (n - 1)}{n^2} + \left( \frac{n - 1}{n} \sigma^2 \right)^2
+    - 2\sigma^2 \left( \frac{n - 1}{n} \sigma^2 \right) + \sigma^4
+  = \frac{2n - 1}{n^2} \sigma^4
+\end{align*}
+From this,
+\begin{align*}
+  \frac{\mathrm{MSE}(S^2)}{\mathrm{MSE}(S'^2)}
+  = \frac{2\sigma^4}{n - 1} \left( \frac{2n - 1}{n^2} \sigma^4 \right)^{-1}
+  = \frac{2n^2}{(n - 1)(2n - 1)}
+  = \frac{2n^2}{2n^2 - 3n + 1}
+\end{align*}
+For \(n \ge 1\), \(2n^2 > 2n^2 - 3n + 1\) holds, so \(\mathrm{MSE}(S^2) /
+\mathrm{MSE}(S'^2) > 1\) and we can conclude that \(S'^2\) is more efficient in
+terms of mean-squared-error.
+
+\end{document}
+% vim: textwidth=79
