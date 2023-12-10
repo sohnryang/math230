@@ -157,18 +157,18 @@ Thus, the distribution of grades is not uniform.
 \section{Chapter 10 \#86}
 Using this R code,
 \begin{lstlisting}[language=R]
-x <- matrix(c(21, 36, 30, 48, 26, 19), nrow=2)
-chisq.test(x)
+m <- matrix(c(21, 36, 30, 48, 26, 19), nrow=2, byrow=TRUE)
+chisq.test(m)
 \end{lstlisting}
-The \(p\)-value is 0.06234, which is not sufficient to reject the null
-hypothesis. Thus, we fail to reject the null hypothesis and know that
-hypertension is independent of smoking habits.
+The \(p\)-value is 0.0007232, which is sufficient to reject the null
+hypothesis. Thus, we know that hypertension is not independent of smoking
+habits.
 
 \section{Chapter 10 \#92}
 Using this R code,
 \begin{lstlisting}[language=R]
-x <- matrix(c(11, 13, 9, 32, 28, 27, 7, 9, 14), nrow=3)
-chisq.test(x)
+m <- matrix(c(11, 13, 9, 32, 28, 27, 7, 9, 14), nrow=3, byrow=TRUE)
+chisq.test(m)
 \end{lstlisting}
 The \(p\)-value is 0.4323, which is not sufficient to reject the null
 hypothesis. Thus, we fail to reject the null hypothesis and know that the

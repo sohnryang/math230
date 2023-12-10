@@ -13,9 +13,9 @@ x <- c(14, 18, 32, 20, 16)
 chisq.test(x)
 
 ### Problem 86
-x <- matrix(c(21, 36, 30, 48, 26, 19), nrow=2)
-chisq.test(x)
+m <- matrix(c(21, 36, 30, 48, 26, 19), nrow=2, byrow=TRUE)
+chisq.test(m)
 
 ### Problem 92
-x <- matrix(c(11, 13, 9, 32, 28, 27, 7, 9, 14), nrow=3)
-chisq.test(x)
+m <- matrix(c(11, 13, 9, 32, 28, 27, 7, 9, 14), nrow=3, byrow=TRUE)
+chisq.test(m)
