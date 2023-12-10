@@ -1,0 +1,178 @@
+\documentclass{scrartcl}
+\usepackage[margin=3cm]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{blindtext}
+\usepackage{datetime}
+\usepackage{fontspec}
+\usepackage{graphicx}
+\usepackage{kotex}
+\usepackage[lighttt]{lmodern}
+\usepackage{listings}
+\usepackage{mathrsfs}
+\usepackage{mathtools}
+\usepackage{pgf,tikz,pgfplots}
+\usepackage{float}
+
+\pgfplotsset{compat=1.15}
+\usetikzlibrary{arrows}
+
+\lstset{
+  numbers=none, frame=single, showspaces=false,
+  showstringspaces=false, showtabs=false, breaklines=true, showlines=true,
+  breakatwhitespace=true, basicstyle=\ttfamily, keywordstyle=\bfseries,
+  basewidth=0.5em
+}
+
+\newcommand\Overline[2][0.8pt]{%
+  \begin{tikzpicture}[baseline=(a.base)]
+    \node[inner xsep=0pt,inner ysep=1.5pt] (a) {$#2$};
+    \draw[line width= #1] (a.north west) -- (a.north east);
+  \end{tikzpicture}
+}
+\newtheorem{theorem}{Theorem}
+
+\setmainhangulfont{Noto Serif CJK KR}[
+  UprightFont=* Light, BoldFont=* Bold,
+  Script=Hangul, Language=Korean, AutoFakeSlant,
+]
+\setsanshangulfont{Noto Sans CJK KR}[
+  UprightFont=* DemiLight, BoldFont=* Medium,
+  Script=Hangul, Language=Korean
+]
+\setmathhangulfont{Noto Sans CJK KR}[
+  SizeFeatures={
+    {Size=-6,  Font=* Medium},
+    {Size=6-9, Font=*},
+    {Size=9-,  Font=* DemiLight},
+  },
+  Script=Hangul, Language=Korean
+]
+\title{MATH230: Homework 14 (due Dec. 11)}
+\author{손량(20220323)}
+\date{Last compiled on: \today, \currenttime}
+
+\newcommand{\un}[1]{\ensuremath{\ \mathrm{#1}}}
+\newcommand{\imag}{\operatorname{Im}}
+\newcommand{\real}{\operatorname{Re}}
+\newcommand{\Log}{\operatorname{Log}}
+\newcommand{\Arg}{\operatorname{Arg}}
+\DeclareMathOperator*{\Res}{Res}
+
+\begin{document}
+\maketitle
+
+\section{Chapter 10 \#28}
+Let \(n_1 := n_2 := 25, \alpha := 0.05, \bar{x}_1 := 20, \bar{x}_2 := 12, s_1
+:= 1.5, s_2 := 1.25\). Let \(\mu_1\) and \(\mu_2\) be mean percent absorbency
+of cotton fiber and acetate, respectively. Set the null hypothesis \(H_0\) as
+\(\mu_1 - \mu_2 = 0\), and the alternative hypothesis \(H_1\) as \(\mu_1 - \mu_2
+> 0\). Let \(s_p\) be the square root of the value of pooled sample variance.
+Then we can write
+\begin{align*}
+  \frac{\bar{x}_1 - \bar{x}_2}{s_p \sqrt{n^{-1}_1 + n^{-1}_2}}
+  = 20.4859
+  > 1.677224
+  = t_{n_1 + n_2 - 2, \alpha}
+\end{align*}
+so we can reject \(H_0\) since there is a strong evidence that \(\mu_1 - \mu_2
+> 0\) holds, and the answer for the question is yes.
+
+\section{Chapter 10 \#30}
+We can write
+\begin{align*}
+  z
+  := \frac{\bar{x}_1 - \bar{x}_2}
+    {\sqrt{\frac{\sigma^2_1}{n_1} + \frac{\sigma^2_2}{n_2}}}
+  = 3.66228
+\end{align*}
+Then, we can write the \(p\)-value as
+\begin{align*}
+  P(|Z| > z)
+  = 2P(Z > z)
+  = 0.0002499803
+\end{align*}
+Since \(p\)-value is sufficiently small, we can reject the null hypothesis.
+
+\section{Chapter 10 \#40}
+Using this R code,
+\begin{lstlisting}[language=R]
+x1 <- c(0.97, 1.16, 0.72, 0.86, 1.00, 0.85, 0.81, 0.58, 0.62, 0.57, 1.32, 0.64, 1.24, 0.98, 0.99, 1.09, 0.90, 0.92, 0.74, 0.78, 0.88, 1.24, 0.94, 1.18)
+x2 <- c(0.48, 0.71, 0.98, 0.68, 1.18, 1.36, 0.78, 1.64)
+t.test(x1, x2, alternative="two.sided")
+\end{lstlisting}
+We can conclude that the \(p\)-value is 0.6876, which is not sufficient to
+reject the null hypothesis. In other words, the evidence is not sufficient.
+
+\section{Chapter 10 \#44}
+Using this R code,
+\begin{lstlisting}[language=R]
+x1 <- c(224, 270, 400, 444, 590, 660, 1400, 680)
+x2 <- c(116, 96, 239, 329, 437, 597, 689, 576)
+t.test(x1, x2, alternative="two.sided", paired=TRUE)
+\end{lstlisting}
+The \(p\)-value is 0.03186, which is sufficient to reject the null hypothesis.
+In other words, we can say that the length of storage influences the
+concentration in question.
+
+\section{Chapter 10 \#62}
+Let \(n := 48, x = 16, p_0 := 1/4, q_0 := 1 - p_0, \alpha := 0.05\), and \(p\)
+be the proportion of rats developing tumors. Set the null hypothesis \(H_0\) as
+\(p = p_0\), and the alternative hypothesis \(H_1\) as \(p > p_0\). Then we can
+write
+\begin{align*}
+  z
+  = \frac{x - np_0}{\sqrt{np_0 q_0}}
+  = 1.333333
+  < 1.644854
+  = z_\alpha
+\end{align*}
+so we fail to reject \(H_0\).
+
+\section{Chapter 10 \#71}
+Let \(n := 25, \sigma^2_0 := 1.15, s^2 := 2.03, \alpha := 0.05\), and
+\(\sigma^2\) be the variance of the contents. Set the null hypothesis \(H_0\)
+as \(\sigma^2 = \sigma^2_0\), and the alternative hypothesis \(H_1\) as
+\(\sigma^2 > \sigma^2_0\). Then we can write
+\begin{align*}
+  v
+  := \frac{(n - 1) s^2}{\sigma^2_0}
+  = 42.36522
+  > 36.41503
+  = \chi^2_{n - 1, \alpha}
+\end{align*}
+so we can reject \(H_0\).
+
+
+\section{Chapter 10 \#80}
+Using this R code,
+\begin{lstlisting}[language=R]
+x <- c(14, 18, 32, 20, 16)
+chisq.test(x, p=rep(1/5, 5))
+\end{lstlisting}
+The \(p\)-value is 0.04043, which is sufficient to reject the null hypothesis.
+Thus, the distribution of grades is not uniform.
+
+\section{Chapter 10 \#86}
+Using this R code,
+\begin{lstlisting}[language=R]
+x <- matrix(c(21, 36, 30, 48, 26, 19), nrow=2)
+chisq.test(x)
+\end{lstlisting}
+The \(p\)-value is 0.06234, which is not sufficient to reject the null
+hypothesis. Thus, we fail to reject the null hypothesis and know that
+hypertension is independent of smoking habits.
+
+\section{Chapter 10 \#92}
+Using this R code,
+\begin{lstlisting}[language=R]
+x <- matrix(c(11, 13, 9, 32, 28, 27, 7, 9, 14), nrow=3)
+chisq.test(x)
+\end{lstlisting}
+The \(p\)-value is 0.4323, which is not sufficient to reject the null
+hypothesis. Thus, we fail to reject the null hypothesis and know that the
+remedies are equally effective.
+
+\end{document}
+% vim: textwidth=79
